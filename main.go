@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
 	"os"
 	"runtime"
 )
@@ -14,7 +13,7 @@ func main() {
 	}
 
 	filename := os.Args[1]
-	input, err := ioutil.ReadFile(filename)
+	input, err := os.ReadFile(filename)
 	if err != nil {
 		fmt.Printf("Error reading file: %v\n", err)
 		os.Exit(1)
@@ -30,7 +29,7 @@ func main() {
 	machineCode := compiler.Compile(ast)
 
 	outputFilename := filename[:len(filename)-3] + ".asm"
-	err = ioutil.WriteFile(outputFilename, machineCode, 0644)
+	err = os.WriteFile(outputFilename, machineCode, 0644)
 	if err != nil {
 		fmt.Printf("Error writing output file: %v\n", err)
 		os.Exit(1)

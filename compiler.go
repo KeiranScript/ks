@@ -205,6 +205,8 @@ func (c *Compiler) compileExpression(expr Expression) string {
 			c.code = append(c.code, fmt.Sprintf("%s:", trueLabel))
 			c.code = append(c.code, "    mov eax, 1")
 			c.code = append(c.code, fmt.Sprintf("%s:", endLabel))
+		default:
+			panic("ill add smth here later")
 		}
 		return "eax"
 	default:
